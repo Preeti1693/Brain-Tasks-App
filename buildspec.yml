@@ -17,3 +17,11 @@ phases:
       - echo Pushing image...
       - docker push 258215414348.dkr.ecr.us-east-1.amazonaws.com/build-app:latest
       - echo Done
+  post_build:
+  commands:
+    - echo Pushing image...
+    - docker push 258215414348.dkr.ecr.us-east-1.amazonaws.com/build-app:latest
+    - echo Deploying to EKS...
+    - kubectl apply -f deployment.yaml
+    - kubectl apply -f service.yaml
+
