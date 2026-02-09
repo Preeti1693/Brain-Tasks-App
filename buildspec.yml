@@ -4,16 +4,16 @@ phases:
   pre_build:
     commands:
       - echo Logging in to ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 258215414348.dkr.ecr.ap-south-1.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 258215414348.dkr.us-east-1.amazonaws.com
 
   build:
     commands:
       - echo Build started
       - docker build -t build-app .
-      - docker tag build-app:latest 258215414348.dkr.ecr.ap-south-1.amazonaws.com/brain-app:latest
+      - docker tag build-app:latest 258215414348.dkr.ecr.us-east-1.amazonaws.com/build-app:latest
 
   post_build:
     commands:
       - echo Pushing image...
-      - docker push 258215414348.dkr.ecr.ap-south-1.amazonaws.com/build-app:latest
+      - docker push 258215414348.dkr.ecr.us-east-1.amazonaws.com/build-app:latest
       - echo Done
